@@ -1,0 +1,47 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+def RELEASE_REPOSITORY_URL="http://nexus.lab.rcch.ringcentral.com:8888/nexus/content/repositories/glip-mobile"
+def SNAPSHOT_REPOSITORY_URL="http://nexus.lab.rcch.ringcentral.com:8888/nexus/content/repositories/glip-mobile-snapshots"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom.project {
+            name 'Glip Case Dispatcher Plugin'
+            artifactId 'allure-common'
+            packaging 'jar'
+            description 'The Glip automation cases allure'
+
+
+            developers {
+                developer {
+                    id 'ringcentral'
+                    name 'RingCentral'
+                    email 'elton.zhong@ringcentral.com'
+                }
+            }
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: RELEASE_REPOSITORY_URL) {
+            }
+
+            snapshotRepository(url: SNAPSHOT_REPOSITORY_URL) { //SNAPSHOT_REPOSITORY_URL
+            }
+        }
+    }
+    doLast {
+        println "**************************************************************************************************************"
+        println "Glip Case Dispatcher Plugin Uploaded"
+        println "Group           : " + GROUP
+        println "ArtifactId      : " + ARTIFACT_ID
+        println "Version         : " + VERSION_NAME
+        println "Repository      : " + (VERSION_NAME.contains("SNAPSHOT") ? SNAPSHOT_REPOSITORY_URL : RELEASE_REPOSITORY_URL)
+        println "**************************************************************************************************************"
+    }
+}
+
