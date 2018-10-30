@@ -24,7 +24,12 @@ project.install {
     }
 
     doLast {
+        println "**************************************************************************************************************"
         println("Install $artifactId to local")
+        println "Group           : " + project.group
+        println "ArtifactId      : " + project.artifactId
+        println "Version         : " + rootProject.projectVersion
+        println "**************************************************************************************************************"
     }
 }
 
