@@ -85,7 +85,11 @@ internal object AllureStorage {
     }
 
     internal fun <T> get(uuid: String?, type: Class<out T>): T {
-        val key = requireNotNull(uuid) { "Failed to get item from storage: uuid can't be null" }
+
+        // In case that container can still be found even if uuid got a timestamp suffix
+        val key = storage.keys
+                .filter { it.contains(uuid!!) && type.isInstance(storage[it]!!) }
+                .get(0)
         return type.cast(storage[key])
     }
 
