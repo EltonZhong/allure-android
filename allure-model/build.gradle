@@ -28,3 +28,9 @@ task copyLibs(type: Copy) {
     from configurations.testCompile
     into 'libs'
 }
+
+ext {
+    artifactId = 'allure-model'
+}
+
+apply from: "../gradle/mvn.gradle"

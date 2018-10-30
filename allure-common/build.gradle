@@ -8,7 +8,6 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
@@ -34,4 +33,8 @@ task copyLibs(type: Copy) {
     into 'libs'
 }
 
-apply from: 'mvn.gradle'
+ext {
+    artifactId = 'allure-common'
+}
+
+apply from: "../gradle/mvn.gradle"
