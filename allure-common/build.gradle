@@ -33,3 +33,8 @@ task copyLibs(type: Copy) {
     into 'libs'
 }
 
+ext {
+    artifactId = 'allure-common'
+}
+
+apply from: "../gradle/mvn.gradle"

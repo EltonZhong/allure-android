@@ -72,7 +72,7 @@ abstract class AllureLifecycle(private val reader: AllureResultsReader,
     }
 
     open fun startTestCase(uuid: String) {
-        AllureStorage.getTestResult(uuid)?.apply {
+        AllureStorage.getTestResult(uuid)!!.apply {
             beforeTestStart(this)
             stage = Stage.RUNNING
             start = System.currentTimeMillis()
@@ -111,7 +111,7 @@ abstract class AllureLifecycle(private val reader: AllureResultsReader,
     open fun writeTestCase() = writeTestCase(AllureStorage.getTest())
 
     open fun writeTestCase(uuid: String) {
-        AllureStorage.getTestResult(uuid)?.apply {
+        AllureStorage.getTestResult(uuid)!!.apply {
             beforeTestWrite(this)
             writer.write(this)
             afterTestWrite(this)

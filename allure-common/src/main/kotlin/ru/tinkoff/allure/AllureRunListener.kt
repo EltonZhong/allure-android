@@ -66,7 +66,8 @@ open class AllureRunListener(private val lifecycle: AllureLifecycle = AllureComm
     override fun testStarted(description: Description) {
         // val uuid = AllureStorage.getTest()
         val testResult = TestResult(
-                uuid = "${description.className}#${description.methodName}",
+                // Make uuid differs, in case that different report with same name will be overwritten
+                uuid = "${description.className}#${description.methodName}-${System.currentTimeMillis()}",
                 historyId = getHistoryId(description),
                 name = getMethodDisplayName(description),
                 fullName = "${description.className}.${description.methodName}",
