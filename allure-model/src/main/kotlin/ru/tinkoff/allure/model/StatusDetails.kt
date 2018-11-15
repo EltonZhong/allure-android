@@ -19,7 +19,7 @@ data class StatusDetails(
         fun fromThrowable(e: Throwable?): StatusDetails? {
             if (e == null) return null
             return StatusDetails(
-                    message = e.message?.substringBefore('\n'),
+                    message = e.message?.substringBefore('\n') ?: "No message",
                     trace = StringWriter().also { e.printStackTrace(PrintWriter(it)) }.toString()
             )
         }
